@@ -1,0 +1,60 @@
+/* INPUTS */
+
+input.padding_s {
+    padding: 0.5em 1em;
+}
+
+input.border_s {
+    border: 2px solid var(--accent-primary);
+    border-radius: 5px;
+    background: var(--background-primary);
+}
+
+input.border_s:focus-within {
+    border: 2px solid var(--accent-primary-focussed);
+    outline: none;
+}
+
+.input-label_topborder {
+    background: var(--background-primary);
+    transform: translate(1em, 50%);
+    max-width: fit-content;
+    padding: 0 0.5em;
+}
+
+/* BUTTONS */
+button.padding_s {
+    padding: 0.5em 1em;
+}
+
+button.filled_primary {
+    border: 2px solid var(--accent-primary);
+    border-radius: 5px;
+    background: var(--accent-primary);
+    color: var(--background-primary);
+    cursor: pointer;
+    transition: background 200ms ease-in;
+}
+
+button.filled_secondary {
+    border: 2px solid var(--accent-secondary);
+    border-radius: 5px;
+    background: var(--accent-secondary);
+    color: var(--background-primary);
+    cursor: pointer;
+    transition: filter 200ms ease-in;
+}
+
+button.stroked_secondary {
+    border: 2px solid var(--accent-secondary);
+    border-radius: 5px;
+    background: var(--background-primary);
+    color: var(--accent-secondary);
+    cursor: pointer;
+    transition: filter 200ms ease-in;
+}
+
+button.filled_primary:hover:not(:disabled),
+button.filled_secondary:hover:not(:disabled) {
+    filter: brightness(0.9);
+}

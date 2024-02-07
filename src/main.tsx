@@ -5,7 +5,8 @@ import './index.css'
 
 import App from './App.tsx'
 import Lobby from './pages/lobby'
-import Room from './pages/room/';
+import LobbyRoom from './pages/lobby/[id]/index.tsx';
+
 import { SocketProvider } from './context/SocketProvider/index.tsx';
 
 const router = createBrowserRouter([
@@ -15,7 +16,7 @@ const router = createBrowserRouter([
     errorElement: <>Error</>,
     children: [
       { path: "/lobby", element: <Lobby/> },
-      { path: "/room/:id", element: <Room/> },
+      { path: "/lobby/:id", element: <LobbyRoom/> },
     ]
   },
 ]);

@@ -1,14 +1,10 @@
-import { createContext, useContext, useMemo } from "react";
+import { createContext, useMemo } from "react";
 import { Socket, io } from 'socket.io-client'
 
-const SocketContext = createContext<Socket | null>(null);
+export const SocketContext = createContext<Socket | null>(null);
 
 type SocketProviderProps = {
     children: React.ReactNode
-}
-
-export const useSocket = () => {
-    return useContext(SocketContext);
 }
 
 export const SocketProvider = ({children}: SocketProviderProps) => {

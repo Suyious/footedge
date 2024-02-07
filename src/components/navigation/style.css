@@ -1,0 +1,17 @@
+.navigation_body {
+    position: fixed;
+    width: 100vw;
+    background: var(--background-primary-lighter);
+    z-index: 99;
+}
+
+.navigation_wrapper {
+    margin: 0 auto;
+    width: 1080px;
+    max-width: 90vw;
+    height: 4em;
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}

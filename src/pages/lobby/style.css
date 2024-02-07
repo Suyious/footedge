@@ -1,0 +1,50 @@
+.lobby_body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.lobby_wrapper {
+    max-width: 90vw;
+    width: 20em;
+}
+
+.lobby_form {
+    display: flex;
+    flex-direction: column;
+}
+
+.lobby_form label {
+    display: flex;
+    flex-direction: column;
+}
+
+.lobby_form input {
+    flex: 1;
+}
+
+.lobby_label {
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.lobby_form_button {
+    margin-top: 1em;
+    font-family: 'Red Hat Display';
+    font-weight: 800;
+}
+
+.lobby_subtitle {
+    text-align: center;
+    margin-top: 1em;
+    font-size: 0.9em;
+    font-weight: 600;
+}
+
+.lobby_buttons {
+    display: grid;
+    gap: 0.5em;
+    grid-template-columns: 0.4fr 0.6fr;
+}

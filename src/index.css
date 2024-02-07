@@ -1,12 +1,29 @@
+@import url('https://fonts.googleapis.com/css2?family=Red+Hat+Display:ital,wght@0,300..900;1,300..900&display=swap');
+
 :root {
   font-synthesis: none;
   text-rendering: optimizeLegibility;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
+  --foreground-primary: #2E3532;
+  --background-primary: #F8F0D5;
+  --background-primary-lighter: #FFF7DD;
+  --accent-primary: #ffaaaa;
+  --accent-primary-darker: #ff9696;
+  --accent-primary-focussed: #ff7373;
+  --accent-secondary: #7192BE;
+
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+}
+
+body {
+  background: var(--background-primary);
+  color: var(--foreground-primary);
+  font-family: 'Red Hat Display';
 }
