@@ -6,6 +6,7 @@ import './index.css'
 import App from './App.tsx'
 import Lobby from './pages/lobby'
 import LobbyRoom from './pages/lobby/[id]/index.tsx';
+import Room from './pages/room/index.tsx';
 
 import { SocketProvider } from './context/SocketProvider/index.tsx';
 
@@ -17,6 +18,7 @@ const router = createBrowserRouter([
     children: [
       { path: "/lobby", element: <Lobby/> },
       { path: "/lobby/:id", element: <LobbyRoom/> },
+      { path: "/room/:id", element: <Room/> },
     ]
   },
 ]);

@@ -1,0 +1,38 @@
+.background_body {
+    width: 100vw;
+    height: 100vh;
+    position: relative;
+}
+
+.background_body img {
+    position: absolute;
+}
+
+.background_body img#background-img_1 {
+    width: 13em;
+    bottom: 5vh;
+    left: 1vw;
+}
+
+.background_body img#background-img_2 {
+    width: 2em;
+    top: 10vh;
+    left: 30vw;
+    transform: rotateY(180deg);
+}
+.background_body img#background-img_3 {
+    width: 2em;
+    top: 15vh;
+    right: 30vw;
+}
+.background_body img#background-img_4 {
+    width: 5em;
+    bottom: 30vh;
+    right: 10vw;
+    transform: rotateY(180deg);
+}
+.background_body img#background-img_5 {
+    width: 2em;
+    bottom: 5vh;
+    right: 40vw;
+}

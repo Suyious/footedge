@@ -1,3 +1,25 @@
+/* APP */
+.app_wrapper {
+    position: relative;
+}
+
+.app_background,
+.app_outlet {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.app_background {
+    z-index: 0;
+}
+
+.app_outlet {
+    z-index: 1;
+}
+
 /* INPUTS */
 
 input.padding_s {

@@ -1,29 +1,15 @@
-import "./style.css"
-import { useCallback, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { useSocket } from "../../hooks/useSocket";
+import "./style.css";
+import { useCallback, useState } from "react";
 
 const Lobby = () => {
     const [room, setRoom] = useState("");
 
-    const socket = useSocket();
-
+    const navigate = useNavigate();
     const onSubmit = useCallback((e: React.FormEvent) => {
         e.preventDefault();
-        socket?.emit('room:join', { room });
-    }, [ room, socket])
-
-    const navigate = useNavigate();
-    const handleJoinRoom = useCallback((data: { room: string }) => {
-        navigate(`/lobby/${data.room}`)
-    }, [navigate]);
-
-    useEffect(() => {
-        socket?.on("room:join:success", handleJoinRoom);
-        return () => {
-            socket?.off("room:join:success");
-        }
-    }, [socket, handleJoinRoom])
+        navigate(`/lobby/${room}`)
+    }, [ room, navigate])
 
     return (
         <div className="lobby_body">

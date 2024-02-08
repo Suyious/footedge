@@ -25,7 +25,8 @@
     position: relative;
     margin: 1em auto;
     width: 40em;
-    height: 25em;
+    max-width: 90vw;
+    height: auto;
 }
 
 .lobby-room_video_component_wrapper img {
@@ -45,6 +46,7 @@
 
 .lobby-room_video_wrapper video {
     width: 100%;
+    display: block;
 }
 
 .lobby-room_toggle_buttons {
@@ -77,6 +79,7 @@
     font-family: 'Red Hat Display';
     font-weight: 800;
     width: 40em;
+    max-width: 90vw;
     margin: 0 auto;
     display: block;
 }

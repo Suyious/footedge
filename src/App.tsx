@@ -2,6 +2,7 @@ import { Outlet, useLocation, useNavigate } from 'react-router-dom'
 import './App.css'
 import { useEffect } from 'react'
 import Navigation from './components/navigation';
+import Background from './components/background';
 
 function App() {
 
@@ -21,12 +22,19 @@ function App() {
 
   return (
     <>
-      <div>
+      <main className='app_body'>
         <Navigation 
           left={<Left/>}
         />
-        <Outlet/>
-      </div>
+        <div className="app_wrapper">
+          <div className="app_background">
+            <Background />
+          </div>
+          <div className="app_outlet">
+            <Outlet />
+          </div>
+        </div>
+      </main>
     </>
   )
 }
