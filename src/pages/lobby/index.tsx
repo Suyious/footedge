@@ -30,7 +30,7 @@ const Lobby = () => {
             <div className="lobby_wrapper">
                 <form className="lobby_form" onSubmit={onSubmit}>
                     <p className="lobby_subtitle">Start a <span>video chat</span> with no signup required</p>
-                    <label htmlFor="room">
+                    <label className="flex_column" htmlFor="room">
                         <span className="lobby_label input-label_topborder">Room</span>
                         <input className="padding_s border_s" type="text" id="room" value={room} onChange={e => setRoom(e.target.value)}/>
                     </label>

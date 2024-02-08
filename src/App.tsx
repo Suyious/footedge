@@ -13,9 +13,9 @@ function App() {
 
   const Left = () => {
     return (
-      <div>
+      <a href='/'>
         <img height={50} src='/footedge.png'/>
-      </div>
+      </a>
     )
   }
 

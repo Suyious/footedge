@@ -27,3 +27,8 @@ body {
   color: var(--foreground-primary);
   font-family: 'Red Hat Display';
 }
+
+.flex_column {
+    display: flex;
+    flex-direction: column;
+}

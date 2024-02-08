@@ -16,11 +16,6 @@
     flex-direction: column;
 }
 
-.lobby_form label {
-    display: flex;
-    flex-direction: column;
-}
-
 .lobby_form input {
     flex: 1;
 }

@@ -1,3 +1,82 @@
 .lobby-room_body {
-    padding-top: 4em;
+    padding-top: 5em;
+    max-width: 90vw;
+    width: 1080px;
+    margin: 0 auto;
+}
+
+.lobby-room_subtitle {
+    font-size: 0.9em;
+    font-weight: 600;
+    text-align: center;
+}
+
+.lobby-room_label {
+    font-size: 0.8em;
+    font-weight: 600;
+}
+
+.lobby-room_input_wrapper {
+    width: 20em;
+    margin: 0 auto;
+}
+
+.lobby-room_video_component_wrapper {
+    position: relative;
+    margin: 1em auto;
+    width: 40em;
+    height: 25em;
+}
+
+.lobby-room_video_component_wrapper img {
+    position: absolute;
+    top: -3em;
+    right: -2em;
+    width: 5em;
+}
+
+.lobby-room_video_wrapper {
+    overflow: hidden;
+    border: 2px solid var(--accent-primary);
+    border-radius: 15px;
+    width: 100%;
+    height: 100%;
+}
+
+.lobby-room_video_wrapper video {
+    width: 100%;
+}
+
+.lobby-room_toggle_buttons {
+    position: absolute;
+    bottom: 1em;
+    left: 1em;
+    display: flex;
+    gap: 1em;
+}
+
+.lobby-room_toggle_button {
+    outline: none;
+    border: none;
+    width: 3.5em;
+    height: 3.5em;
+    border-radius: 50px;
+    background: var(--accent-primary);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.lobby-room_toggle_button svg {
+    width: 2em;
+    height: 2em;
+}
+
+.lobby-room_button {
+    font-family: 'Red Hat Display';
+    font-weight: 800;
+    width: 40em;
+    margin: 0 auto;
+    display: block;
 }
