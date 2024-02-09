@@ -2,8 +2,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 
 const useMediaStream = () => {
     const [stream, setStream] = useState<MediaStream | null>(null);
-    const [video, setVideo] = useState<boolean>(false);
-    const [audio, setAudio] = useState<boolean>(false);
+    const [video, setVideo] = useState<boolean>(true);
+    const [audio, setAudio] = useState<boolean>(true);
     const isStreamSet = useRef(false);
 
     const stopStream= useCallback(() => {
@@ -19,8 +19,8 @@ const useMediaStream = () => {
                 video: true
             })
             setStream(s);
-            setAudio(true);
-            setVideo(true);
+            if(!video) toggleVideoStream();
+            if(!audio) toggleAudioStream();
         } catch (err) {
             console.log(err);
         }
@@ -48,8 +48,6 @@ const useMediaStream = () => {
         startStream()
         return () => {
             setStream(null)
-            setVideo(false);
-            setAudio(false);
         }
     }, [])
 

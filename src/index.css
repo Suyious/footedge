@@ -7,11 +7,13 @@
   -moz-osx-font-smoothing: grayscale;
 
   --foreground-primary: #2E3532;
+  --foreground-primary-opacity: #2e3532c9;
   --background-primary: #F8F0D5;
   --background-primary-lighter: #FFF7DD;
   --accent-primary: #ffaaaa;
   --accent-primary-darker: #ff9696;
   --accent-primary-focussed: #ff7373;
+  --accent-primary-red: #82204A;
   --accent-secondary: #7192BE;
 
 }

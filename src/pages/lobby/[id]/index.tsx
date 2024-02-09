@@ -48,7 +48,7 @@ const LobbyRoom = () => {
             </label>
             <div className="lobby-room_video_component_wrapper">
                 <img src="/bow.png" alt="the bow" />
-                <div className="lobby-room_video_wrapper border_s">
+                <div className="lobby-room_video_wrapper">
                     <video ref={video} autoPlay muted></video>
                 </div>
                 <div className="lobby-room_toggle_buttons">

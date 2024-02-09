@@ -1,0 +1,94 @@
+.room_body {
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.room_wrapper {
+    position: relative;
+    width: 60em;
+    max-width: 90vw;
+    margin: 0 auto;
+}
+
+.room_video_second_person_main {
+    aspect-ratio: calc(16/9);
+    border: 2px solid var(--accent-primary);
+    border-radius: 15px;
+    background: var(--foreground-primary);
+    color: var(--background-primary);
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.room_video_second_person_buttons {
+    position: absolute;
+    bottom: -2em;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 1em;
+    align-items: center;
+}
+
+.room_video_second_person_button {
+    outline: none;
+    border-radius: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.room_video_second_person_button.disabled {
+    background: var(--foreground-primary-opacity);
+    border: 1px solid var(--foreground-primary-opacity);
+}
+
+.room_video_second_person_button.enabled {
+    background: var(--accent-secondary);
+    border: 1px solid var(--accent-secondary);
+}
+
+.room_video_second_person_button.hangup {
+    background: var(--accent-primary-red);
+    border: 1px solid var(--accent-primary-red);
+}
+
+.room_video_second_person_button.normal {
+    width: 3.5em;
+    height: 3.5em;
+}
+.room_video_second_person_button.bigger {
+    width: 4.5em;
+    height: 4.5em;
+}
+
+.room_video_second_person_button svg {
+    width: 2em;
+    height: 2em;
+}
+
+.room_video_first_person_main {
+    width: 20em;
+    max-width: 40vw;
+    aspect-ratio: calc(16/9);
+    border: 2px solid var(--accent-primary);
+    border-radius: 10px;
+    position: absolute;
+    bottom: -3%;
+    right: -3%;
+    background: var(--foreground-primary);
+
+    overflow: hidden;
+}
+
+.room_video_second_person_main video,
+.room_video_first_person_main video {
+    width: 100%;
+    display: block;
+}
