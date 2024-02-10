@@ -6,13 +6,28 @@ const useMediaStream = () => {
     const [audio, setAudio] = useState<boolean>(true);
     const isStreamSet = useRef(false);
 
+    const toggleVideoStream = useCallback(() => {
+        if (stream) {
+            const videoTrack = stream.getVideoTracks()[0];
+            videoTrack.enabled = !videoTrack.enabled;
+            setVideo(!video);
+        }
+    }, [stream, video])
+    
+    const toggleAudioStream = useCallback(() => {
+        if(stream) {
+            const audioTrack = stream.getAudioTracks()[0];
+            audioTrack.enabled = !audioTrack.enabled;
+            setAudio(!audio);
+        }
+    }, [audio, stream]);
     const stopStream= useCallback(() => {
         if (stream) {
             stream.getTracks().forEach((track: MediaStreamTrack) => track.stop());
         }
     }, [stream])
 
-    const startStream = async () => {
+    const startStream = useCallback(async () => {
         try {
             const s = await navigator.mediaDevices.getUserMedia({
                 audio: true,
@@ -24,23 +39,7 @@ const useMediaStream = () => {
         } catch (err) {
             console.log(err);
         }
-    }
-
-    const toggleVideoStream = () => {
-        if (stream) {
-            const videoTrack = stream.getVideoTracks()[0];
-            videoTrack.enabled = !videoTrack.enabled;
-            setVideo(!video);
-        }
-    }
-    
-    const toggleAudioStream = () => {
-        if(stream) {
-            const audioTrack = stream.getAudioTracks()[0];
-            audioTrack.enabled = !audioTrack.enabled;
-            setAudio(!audio);
-        }
-    }
+    }, [audio, toggleAudioStream, toggleVideoStream, video])
 
     useEffect(() => {
         if(isStreamSet.current) return;
@@ -49,7 +48,7 @@ const useMediaStream = () => {
         return () => {
             setStream(null)
         }
-    }, [])
+    }, [startStream])
 
     return { stream, audio, video, stopStream, toggleVideoStream, toggleAudioStream }
 }

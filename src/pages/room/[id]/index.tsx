@@ -49,6 +49,31 @@ const Room = () => {
         }
     }, [outgoingStream]);
 
+    const onNegotiationNeededReceived = useCallback(async ({ offer, user }: { offer: RTCSessionDescriptionInit, user: string}) => {
+        const ans = await peer.getAnswer(offer);
+        socket?.emit("peer:negotiation:done", { id: user, ans})
+    }, [socket]);
+
+    const onNegotiationDoneReceived = useCallback(async ({ ans, user }: { ans: RTCSessionDescriptionInit, user: string }) => {
+        console.log("Done with ", user);
+        await peer.setLocalDescription(ans);
+    }, []);
+
+    useEffect(() => {
+        socket?.on("user:joined",onUserJoined);
+        socket?.on("offer:received", onOfferReceived);
+        socket?.on("ans:received", onAnsReceived);
+        socket?.on("peer:negotiation:needed:received", onNegotiationNeededReceived)
+        socket?.on("peer:negotiation:done:received", onNegotiationDoneReceived);
+        return () => {
+            socket?.off("user:joined",onUserJoined);
+            socket?.off("offer:received", onOfferReceived);
+            socket?.off("ans:received", onAnsReceived);
+            socket?.off("peer:negotiation:needed:received", onNegotiationNeededReceived)
+            socket?.off("peer:negotiation:done:received", onNegotiationDoneReceived);
+        }
+    }, [socket, onUserJoined, onOfferReceived, onAnsReceived, onNegotiationNeededReceived, onNegotiationDoneReceived])
+
     useEffect(() => {
         peer.peer?.addEventListener("track", async (event) => {
             const stream = event.streams;
@@ -56,16 +81,17 @@ const Room = () => {
         })
     }, [])
 
+    const handleNegotiationNeeded = useCallback(async () => {
+        const offer = await peer.getOffer();
+        socket?.emit("peer:negotiation:needed", { offer, id: remoteSocket });
+    }, [socket, remoteSocket])
+
     useEffect(() => {
-        socket?.on("user:joined",onUserJoined);
-        socket?.on("offer:received", onOfferReceived);
-        socket?.on("ans:received", onAnsReceived);
+        peer.peer?.addEventListener("negotiationneeded", handleNegotiationNeeded);
         return () => {
-            socket?.off("user:joined",onUserJoined);
-            socket?.off("offer:received", onOfferReceived);
-            socket?.off("ans:received", onAnsReceived);
+            peer.peer?.removeEventListener("negotiationneeded", handleNegotiationNeeded);
         }
-    }, [socket, onUserJoined, onOfferReceived, onAnsReceived])
+    }, [handleNegotiationNeeded])
 
     return (
         <div className="room_body">
