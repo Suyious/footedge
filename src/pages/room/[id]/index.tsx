@@ -33,29 +33,36 @@ const Room = () => {
     }, [socket])
 
     const onOfferReceived = useCallback(async ({ user, offer }: { user: string, offer: RTCSessionDescriptionInit }) => {
-        console.log(user, offer);
+        console.log(user,"gave offer", offer);
         setRemoteSocket(user);
         const ans = await peer.getAnswer(offer);
         socket?.emit("ans:incoming", { id: user, ans });
     }, [socket]);
 
-    const onAnsReceived = useCallback(({ user, ans }: { user: string, ans: RTCSessionDescriptionInit}) => {
-        peer.setLocalDescription(ans)
-        console.log(user, " recieved ", ans);
+    const sendStream = useCallback(() => {
+        console.log("SENDING STREAM")
         if(outgoingStream) {
             for (const track of outgoingStream.getTracks()) {
                 peer.peer?.addTrack(track, outgoingStream);
             }
         }
-    }, [outgoingStream]);
+    }, [outgoingStream])
+
+    const onAnsReceived = useCallback(async ({ user, ans }: { user: string, ans: RTCSessionDescriptionInit}) => {
+        await peer.setLocalDescription(ans)
+        console.log(user, " recieved ans ", ans);
+        sendStream();
+        socket?.emit("user:final", { id: user });
+    }, [sendStream, socket]);
 
     const onNegotiationNeededReceived = useCallback(async ({ offer, user }: { offer: RTCSessionDescriptionInit, user: string}) => {
         const ans = await peer.getAnswer(offer);
+        console.log("Done with Negotiation 1", user);
         socket?.emit("peer:negotiation:done", { id: user, ans})
     }, [socket]);
 
     const onNegotiationDoneReceived = useCallback(async ({ ans, user }: { ans: RTCSessionDescriptionInit, user: string }) => {
-        console.log("Done with ", user);
+        console.log("Done with Negotiation 2", user);
         await peer.setLocalDescription(ans);
     }, []);
 
@@ -78,8 +85,9 @@ const Room = () => {
         peer.peer?.addEventListener("track", async (event) => {
             const stream = event.streams;
             setIncomingStream(stream[0]);
+            console.log("Track Event")
         })
-    }, [])
+    }, [sendStream])
 
     const handleNegotiationNeeded = useCallback(async () => {
         const offer = await peer.getOffer();
@@ -100,7 +108,7 @@ const Room = () => {
                     { remoteSocket ? 
                         <p className="room_video_status">Connected</p>:
                         <p className="room_video_status">No Connection</p> }
-                    <video ref={incomingRef} autoPlay></video>
+                    <video onClick={sendStream} ref={incomingRef} autoPlay></video>
                 </div>
                 <div className="room_video_second_person_buttons">
                     <button className={`room_video_second_person_button normal${audioStatus? " enabled": " disabled"}`} onClick={toggleAudioStream}>
